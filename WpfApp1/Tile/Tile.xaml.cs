@@ -24,5 +24,29 @@ namespace LevelEditor.Tile
         {
             InitializeComponent();
         }
+
+        Position position = new(0, 0);
+
+        public void SetPosition(int x, int y)
+        {
+            position = new Position(x, y);
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show($"{position.x}, {position.y}");
+        }
+
+        private class Position
+        {
+            public int x;
+            public int y;
+
+            public Position(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
     }
 }

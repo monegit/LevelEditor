@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LevelEditor.Tile"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border BorderBrush="Black" BorderThickness="0.5">
+    <Border BorderBrush="Black" BorderThickness="0.5" MouseLeftButtonDown="Border_MouseLeftButtonDown" Background="Transparent">
         
     </Border>
 </UserControl>

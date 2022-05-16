@@ -36,12 +36,12 @@ namespace WpfApp1
             bool isWidth = int.TryParse(WidthValue.Text, out _widthValue);
 
             if (isWidth)
-                for (int w = 0; w < int.Parse(WidthValue.Text); w++)
+                for (int w = 0; w < _widthValue; w++)
                 {
                     bool isHeight = int.TryParse(HeightValue.Text, out _heightValue);
 
                     if (isHeight)
-                        for (int h = 0; h < int.Parse(HeightValue.Text); h++)
+                        for (int h = 0; h < _heightValue; h++)
                         {
                             var row = new RowDefinition() { Height = new GridLength(tileSize, GridUnitType.Pixel) };
                             var column = new ColumnDefinition() { Width = new GridLength(tileSize, GridUnitType.Pixel) };
@@ -50,6 +50,7 @@ namespace WpfApp1
                             MapCanvas.ColumnDefinitions.Add(column);
 
                             var tile = new Tile();
+                            tile.SetPosition(w, h);
 
                             Grid.SetRow(tile, h);
                             Grid.SetColumn(tile, w);
