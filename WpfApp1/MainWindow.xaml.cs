@@ -1,20 +1,8 @@
-﻿using LevelEditor.Tile;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace LevelEditor
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -29,15 +17,15 @@ namespace WpfApp1
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
             int tileSize = 30;
+            MapCanvas.Children.Clear();
 
-            int _widthValue;
-            int _heightValue;
-
-            bool isWidth = int.TryParse(WidthValue.Text, out _widthValue);
+            bool isWidth = int.TryParse(WidthValue.Text, out int _widthValue);
 
             if (isWidth)
                 for (int w = 0; w < _widthValue; w++)
                 {
+
+                    int _heightValue;
                     bool isHeight = int.TryParse(HeightValue.Text, out _heightValue);
 
                     if (isHeight)
@@ -49,7 +37,7 @@ namespace WpfApp1
                             MapCanvas.RowDefinitions.Add(row);
                             MapCanvas.ColumnDefinitions.Add(column);
 
-                            var tile = new Tile();
+                            var tile = new Tile.Tile();
                             tile.SetPosition(w, h);
 
                             Grid.SetRow(tile, h);
@@ -68,7 +56,12 @@ namespace WpfApp1
                 MessageBox.Show("Width is not Number", "Error");
                 WidthValue.Focus();
             }
+        }
 
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            Document.Document.Save(@"C:\Users\pjw97\Desktop\a.txt");
+            //File.WriteAllText(@"C:\Users\pjw97\Desktop\a.txt", Document.Document.map.ToString());
         }
     }
 }
