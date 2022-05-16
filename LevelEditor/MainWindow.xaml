@@ -41,7 +41,9 @@
             <ScrollViewer x:Name="MapScroll" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
 
             <Grid Grid.Column="1">
-                
+                <ScrollViewer>
+                    <WrapPanel x:Name="AssetList"/>
+                </ScrollViewer>
             </Grid>
         </Grid>
         <!--#endregion-->
