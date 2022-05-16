@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Blend for Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelEditor", "WpfApp1\LevelEditor.csproj", "{AB2A2AD7-195B-4747-83AE-1F6DDFE6896A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LevelEditor", "LevelEditor\LevelEditor.csproj", "{AB2A2AD7-195B-4747-83AE-1F6DDFE6896A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

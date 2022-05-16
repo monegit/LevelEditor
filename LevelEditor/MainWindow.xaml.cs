@@ -17,6 +17,7 @@ namespace LevelEditor
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
             int tileSize = 30;
+
             MapCanvas.Children.Clear();
 
             bool isWidth = int.TryParse(WidthValue.Text, out int _widthValue);
