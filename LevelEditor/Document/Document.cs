@@ -12,6 +12,7 @@ namespace LevelEditor.Document
 
         public static void Save(string path)
         {
+            document = new();
             document.Add("Title", title);
             document.Add("Map", map);
 

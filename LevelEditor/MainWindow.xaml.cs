@@ -17,10 +17,40 @@ namespace LevelEditor
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
             int tileSize = 30;
+            var canvas = new Grid() { Margin = new Thickness(20) };
 
-            MapCanvas.Children.Clear();
+            if (int.TryParse(WidthValue.Text, out int _widthValue))
+                for (int i = 0; i < _widthValue; i++)
+                {
+                    var column = new ColumnDefinition() { Width = new GridLength(tileSize, GridUnitType.Pixel) };
 
-            bool isWidth = int.TryParse(WidthValue.Text, out int _widthValue);
+                    canvas.ColumnDefinitions.Add(column);
+                }
+
+            if(int.TryParse(HeightValue.Text,out int _heightValue))
+                for (int i = 0; i < _heightValue; i++)
+                {
+                    var row = new RowDefinition() { Height = new GridLength(tileSize, GridUnitType.Pixel) };
+
+                    canvas.RowDefinitions.Add(row);
+                }
+
+            for(int w = 0; w < _widthValue; w++)
+                for(int h = 0; h < _heightValue; h++)
+                {
+                    var tile = new Tile.Tile();
+
+                    tile.SetPosition(w, h);
+
+                    Grid.SetRow(tile, h);
+                    Grid.SetColumn(tile, w);
+                    canvas.Children.Add(tile);
+                }
+
+            MapScroll.Content = canvas;
+
+
+            /*bool isWidth = int.TryParse(WidthValue.Text, out int _widthValue);
 
             if (isWidth)
                 for (int w = 0; w < _widthValue; w++)
@@ -56,7 +86,8 @@ namespace LevelEditor
             {
                 MessageBox.Show("Width is not Number", "Error");
                 WidthValue.Focus();
-            }
+            }*/
+            //MessageBox.Show(MapCanvas.ActualWidth.ToString());
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
