@@ -19,9 +19,17 @@ namespace LevelEditor
             if (Directory.Exists(path))
             {
                 Console.WriteLine("dd");
-                foreach (var a in Tile.Asset.Load.getAssetList($@"{path}\Tile"))
+                foreach (var a in Tile.Asset.Load.GetAssetList($@"{path}\Tile"))
                 {
-                    var assetImage = new Image()
+                    var q = new Template.Tile()
+                    {
+                        Source = a,
+                        Margin = new Thickness(5),
+                        Width = Constant.TILE_SIZE,
+                        Height = Constant.TILE_SIZE,
+                    };
+
+                    /*var assetImage = new Image()
                     {
                         Margin = new Thickness(5),
                         Width = Constant.TILE_SIZE,
@@ -29,7 +37,9 @@ namespace LevelEditor
                     };
 
                     assetImage.Source = new BitmapImage(new Uri(a, UriKind.Absolute));
-                    AssetList.Children.Add(assetImage);
+                    AssetList.Children.Add(assetImage);**/
+                    AssetList.Children.Add(q);
+
                 }
             }
             else
@@ -76,7 +86,7 @@ namespace LevelEditor
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             //TODO: dialog로 저장
-            Document.Document.Save(@"C:\Users\pjw97\Desktop\a.txt");
+            Document.Document.Save($@"{Directory.GetCurrentDirectory()}\a.json");
         }
     }
 }

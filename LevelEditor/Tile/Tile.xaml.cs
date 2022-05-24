@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace LevelEditor.Tile
 {
@@ -23,6 +24,7 @@ namespace LevelEditor.Tile
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Document.Document.map.Add($"{position.x}, {position.y}");
+            TileField.Source = new BitmapImage(new System.Uri(Global.SelectedTile, System.UriKind.Absolute)); // Global.SelectedTile;
             //MessageBox.Show($"{position.x}, {position.y}");
         }
 

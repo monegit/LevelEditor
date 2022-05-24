@@ -1,12 +1,12 @@
-﻿<UserControl x:Class="LevelEditor.Tile.Tile"
+﻿<UserControl x:Class="LevelEditor.Template.Tile"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LevelEditor.Tile"
+             xmlns:local="clr-namespace:LevelEditor.Template"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border BorderBrush="Black" BorderThickness="0.5" MouseLeftButtonDown="Border_MouseLeftButtonDown" Background="Transparent">
-        <Image x:Name="TileField" />
-    </Border>
+    <Grid>
+        <Image x:Name="TileTemplate" MouseLeftButtonDown="TileTemplate_MouseLeftButtonDown" />
+    </Grid>
 </UserControl>
