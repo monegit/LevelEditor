@@ -9,5 +9,6 @@ namespace LevelEditor
     internal class Constant
     {
         internal static readonly int TILE_SIZE = 30;
+        internal static bool isDrag = false;
     }
 }

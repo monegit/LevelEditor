@@ -23,9 +23,9 @@ namespace LevelEditor.Tile
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Constant.isDrag = true;
             Document.Document.map.Add($"{position.x}, {position.y}");
             TileField.Source = new BitmapImage(new System.Uri(Global.SelectedTile, System.UriKind.Absolute)); // Global.SelectedTile;
-            //MessageBox.Show($"{position.x}, {position.y}");
         }
 
         private class Position
@@ -38,6 +38,12 @@ namespace LevelEditor.Tile
                 this.x = x;
                 this.y = y;
             }
+        }
+
+        private void Border_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Constant.isDrag)
+                TileField.Source = new BitmapImage(new System.Uri(Global.SelectedTile, System.UriKind.Absolute));
         }
     }
 }
