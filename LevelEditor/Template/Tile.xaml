@@ -6,7 +6,5 @@
              xmlns:local="clr-namespace:LevelEditor.Template"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Image x:Name="TileTemplate" MouseLeftButtonDown="TileTemplate_MouseLeftButtonDown" />
-    </Grid>
+    <Image x:Name="TileTemplate" MouseLeftButtonDown="TileTemplate_MouseLeftButtonDown" />
 </UserControl>

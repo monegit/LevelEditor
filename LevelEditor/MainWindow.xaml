@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LevelEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" PreviewMouseUp="Window_PreviewMouseUp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <!--#region Header-->
         <Grid Grid.Row="0">
             <WrapPanel VerticalAlignment="Center">
@@ -38,13 +38,34 @@
                 <ColumnDefinition Width=".3*" />
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer x:Name="MapScroll" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
 
+                <ScrollViewer x:Name="MapScroll" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,-2,0,2" />
+                <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <CheckBox Name="TileBorderVisible" IsChecked="True" Content="테두리" Checked="TileBorderVisible_Checked" />
+                </Grid>
+            </Grid>
+            <!--#region Template-->
             <Grid Grid.Column="1">
-                <ScrollViewer>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <CheckBox x:Name="UseCollision" Content="충돌" />
+                    
+                </Grid>
+
+                <ScrollViewer Grid.Row="1">
                     <WrapPanel x:Name="AssetList"/>
                 </ScrollViewer>
             </Grid>
+            <!--#endregion-->
         </Grid>
         <!--#endregion-->
     </Grid>

@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -14,36 +16,44 @@ namespace LevelEditor.Tile
             InitializeComponent();
         }
 
-        Position position = new(0, 0);
+        public Position position = new(0, 0);
+        public bool isCollision { get; set; } = false;
 
         public void SetPosition(int x, int y)
         {
             position = new Position(x, y);
         }
 
+        private void DrawTile()
+        {
+            isCollision = (bool)MainWindow.Instance?.UseCollision.IsChecked!;
+            TileField.Source = new BitmapImage(new Uri(Global.SelectedTile, UriKind.Absolute));
+        }
+
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Constant.isDrag = true;
-            Document.Document.map.Add($"{position.x}, {position.y}");
-            TileField.Source = new BitmapImage(new System.Uri(Global.SelectedTile, System.UriKind.Absolute)); // Global.SelectedTile;
+            DrawTile();
         }
 
-        private class Position
+        public class Position
         {
-            public int x;
-            public int y;
+            public int X;
+            public int Y;
 
             public Position(int x, int y)
             {
-                this.x = x;
-                this.y = y;
+                X = x;
+                Y = y;
             }
         }
 
         private void Border_MouseMove(object sender, MouseEventArgs e)
         {
             if (Constant.isDrag)
-                TileField.Source = new BitmapImage(new System.Uri(Global.SelectedTile, System.UriKind.Absolute));
+            {
+                DrawTile();
+            }
         }
     }
 }

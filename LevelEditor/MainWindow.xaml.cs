@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace LevelEditor
@@ -11,17 +13,19 @@ namespace LevelEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow? Instance { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
 
             string path = $@"{Directory.GetCurrentDirectory()}\Asset";
             if (Directory.Exists(path))
             {
-                Console.WriteLine("dd");
                 foreach (var a in Tile.Asset.Load.GetAssetList($@"{path}\Tile"))
                 {
-                    var q = new Template.Tile()
+                    var assetImage = new Template.Tile()
                     {
                         Source = a,
                         Margin = new Thickness(5),
@@ -29,17 +33,7 @@ namespace LevelEditor
                         Height = Constant.TILE_SIZE,
                     };
 
-                    /*var assetImage = new Image()
-                    {
-                        Margin = new Thickness(5),
-                        Width = Constant.TILE_SIZE,
-                        Height = Constant.TILE_SIZE,
-                    };
-
-                    assetImage.Source = new BitmapImage(new Uri(a, UriKind.Absolute));
-                    AssetList.Children.Add(assetImage);**/
-                    AssetList.Children.Add(q);
-
+                    AssetList.Children.Add(assetImage);
                 }
             }
             else
@@ -50,7 +44,12 @@ namespace LevelEditor
 
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            var canvas = new Grid() { Margin = new Thickness(20) };
+            var canvas = new Grid()
+            {
+                Margin = new Thickness(20),
+                VerticalAlignment = VerticalAlignment.Top,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
 
             if (int.TryParse(WidthValue.Text, out int _widthValue))
                 for (int i = 0; i < _widthValue; i++)
@@ -60,7 +59,7 @@ namespace LevelEditor
                     canvas.ColumnDefinitions.Add(column);
                 }
 
-            if(int.TryParse(HeightValue.Text,out int _heightValue))
+            if (int.TryParse(HeightValue.Text, out int _heightValue))
                 for (int i = 0; i < _heightValue; i++)
                 {
                     var row = new RowDefinition() { Height = new GridLength(Constant.TILE_SIZE, GridUnitType.Pixel) };
@@ -68,8 +67,8 @@ namespace LevelEditor
                     canvas.RowDefinitions.Add(row);
                 }
 
-            for(int w = 0; w < _widthValue; w++)
-                for(int h = 0; h < _heightValue; h++)
+            for (int w = 0; w < _widthValue; w++)
+                for (int h = 0; h < _heightValue; h++)
                 {
                     var tile = new Tile.Tile();
 
@@ -87,6 +86,28 @@ namespace LevelEditor
         {
             //TODO: dialog로 저장
             Document.Document.Save($@"{Directory.GetCurrentDirectory()}\a.json");
+
+            //Document.Document.Save();
+            //Trace.WriteLine((a.Children[11] as Tile.Tile).TileField.Source.ToString());
+        }
+
+        private void TileBorderVisible_Checked(object sender, RoutedEventArgs e)
+        {
+            if ((bool)((CheckBox)sender).IsChecked!)
+            {
+                //MessageBox.Show("true");
+            }
+        }
+
+        private void Window_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Constant.isDrag = false;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MessageBox.Show((MapScroll.Content as Grid)?.RowDefinitions.Count.ToString());
         }
     }
 }
