@@ -6,5 +6,7 @@
              xmlns:local="clr-namespace:LevelEditor.Template"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Image x:Name="TileTemplate" MouseLeftButtonDown="TileTemplate_MouseLeftButtonDown" />
+    <Border ClipToBounds="True" CornerRadius="5" Background="#FFEAEAEA">
+        <Image x:Name="TileTemplate" MouseLeftButtonDown="TileTemplate_MouseLeftButtonDown"/>
+    </Border>
 </UserControl>

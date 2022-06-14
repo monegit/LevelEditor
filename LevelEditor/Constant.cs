@@ -10,5 +10,6 @@ namespace LevelEditor
     {
         internal static readonly int TILE_SIZE = 40;
         internal static bool isDrag = false;
+        internal static string TITLE { get; set; } = String.Empty;
     }
 }

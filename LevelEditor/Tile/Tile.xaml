@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LevelEditor.Tile"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border BorderBrush="Black" BorderThickness="1" MouseLeftButtonDown="Border_MouseLeftButtonDown" Background="Transparent" MouseMove="Border_MouseMove">
+    <Border BorderBrush="Black" BorderThickness="1" MouseLeftButtonDown="Border_MouseLeftButtonDown" Background="Transparent" MouseMove="Border_MouseMove" MouseRightButtonDown="Border_MouseRightButtonDown">
         <Image x:Name="TileField" />
     </Border>
 </UserControl>

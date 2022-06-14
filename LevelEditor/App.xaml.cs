@@ -7,5 +7,6 @@ namespace LevelEditor
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

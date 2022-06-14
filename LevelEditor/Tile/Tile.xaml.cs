@@ -17,7 +17,8 @@ namespace LevelEditor.Tile
         }
 
         public Position position = new(0, 0);
-        public bool isCollision { get; set; } = false;
+        public bool IsCollision { get; set; } = false;
+        bool isRemove = false;
 
         public void SetPosition(int x, int y)
         {
@@ -26,7 +27,7 @@ namespace LevelEditor.Tile
 
         private void DrawTile()
         {
-            isCollision = (bool)MainWindow.Instance?.UseCollision.IsChecked!;
+            IsCollision = (bool)MainWindow.Instance?.UseCollision.IsChecked!;
             TileField.Source = new BitmapImage(new Uri(Global.SelectedTile, UriKind.Absolute));
         }
 
@@ -54,6 +55,11 @@ namespace LevelEditor.Tile
             {
                 DrawTile();
             }
+        }
+
+        private void Border_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

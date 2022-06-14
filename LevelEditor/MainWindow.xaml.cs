@@ -18,6 +18,7 @@ namespace LevelEditor
         public MainWindow()
         {
             InitializeComponent();
+            
             Instance = this;
 
             string path = $@"{Directory.GetCurrentDirectory()}\Asset";
@@ -44,42 +45,7 @@ namespace LevelEditor
 
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            var canvas = new Grid()
-            {
-                Margin = new Thickness(20),
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
 
-            if (int.TryParse(WidthValue.Text, out int _widthValue))
-                for (int i = 0; i < _widthValue; i++)
-                {
-                    var column = new ColumnDefinition() { Width = new GridLength(Constant.TILE_SIZE, GridUnitType.Pixel) };
-
-                    canvas.ColumnDefinitions.Add(column);
-                }
-
-            if (int.TryParse(HeightValue.Text, out int _heightValue))
-                for (int i = 0; i < _heightValue; i++)
-                {
-                    var row = new RowDefinition() { Height = new GridLength(Constant.TILE_SIZE, GridUnitType.Pixel) };
-
-                    canvas.RowDefinitions.Add(row);
-                }
-
-            for (int w = 0; w < _widthValue; w++)
-                for (int h = 0; h < _heightValue; h++)
-                {
-                    var tile = new Tile.Tile();
-
-                    tile.SetPosition(w, h);
-
-                    Grid.SetRow(tile, h);
-                    Grid.SetColumn(tile, w);
-                    canvas.Children.Add(tile);
-                }
-
-            MapScroll.Content = canvas;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
